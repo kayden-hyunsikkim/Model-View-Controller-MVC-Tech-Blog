@@ -1,0 +1,35 @@
+<div class="text-center">
+  <h2>{{name}}</h2>
+  <p>{{{get_emoji}}}</p>
+  <p>{{description}}</p>
+  <p>Created by {{user.name}} on {{format_date date_created}}</p>
+  <p>
+    <span><button class="btn btn-primary update">Update Post</button></span>
+    <button class="btn btn-primary delete" data-id="{{id}}">Delete</button>
+  </p>
+</div>
+
+
+{{#if teches.length}}
+<div class="postform mt-4 p-4" style="border: 5px solid black; display:none;">
+  <div>
+    <h3>Create a New Tech:</h3>
+
+    <form class="form new-project-form">
+      <div class="form-group">
+        <label for="project-name">Tech name:</label>
+        <input class="form-input" type="text" id="project-name" name="project-name" />
+      </div>
+      <div class="form-group">
+        <label for="project-desc">description:</label>
+        <textarea class="form-input" id="project-desc" name="project-desc"></textarea>
+      </div>
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary">Create</button>
+      </div>
+    </form>
+  </div>
+</div>
+{{/if}}
+
+<script src="../public/js/post.js"></script>

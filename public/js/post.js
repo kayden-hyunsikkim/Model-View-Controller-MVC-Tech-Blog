@@ -1,3 +1,4 @@
+
 const newFormHandler = async (event) => {
   event.preventDefault();
 
@@ -6,7 +7,7 @@ const newFormHandler = async (event) => {
 
   if (name && description) {
     const response = await fetch(`/api/tech`, {
-      method: 'POST',
+      method: 'UPDATE',
       body: JSON.stringify({ name, description }),
       headers: {
         'Content-Type': 'application/json',
@@ -41,10 +42,23 @@ const delButtonHandler = async (event) => {
   }
 };
 
-document
-  .querySelector('.new-project-form')
-  .addEventListener('submit', newFormHandler);
 
 document
-  .querySelector('.project-list')
+  .querySelector('.update')
+  .addEventListener('submit', updateform);
+
+
+document
+  .querySelector('.delete')
   .addEventListener('click', delButtonHandler);
+
+
+
+
+
+
+function updateform () {
+  const hide = document.querySelector('.update');
+  hide.setAttribute('style', 'display: none');
+
+}
