@@ -2,22 +2,21 @@
 const newFormHandler = async (event) => {
   event.preventDefault();
 
-  const name = document.querySelector('#project-name').value.trim();
-  const description = document.querySelector('#project-desc').value.trim();
+  const comment = document.querySelector('#comment').value.trim();
+  const id = event.target.getAttribute('data-techid');
+  console.log(id);
 
-  if (name && description) {
-    const response = await fetch(`/api/tech`, {
-      method: 'UPDATE',
-      body: JSON.stringify({ name, description }),
+  if (comment) {
+    const response = await fetch('/api/comment', {
+      method: 'POST',
+      body: JSON.stringify({ comment }),
       headers: {
         'Content-Type': 'application/json',
       },
     });
-    console.log(response);
-    console.log(response.status);
 
     if (response.ok) {
-      document.location.replace('/profile');
+      document.location.replace(`/tech/${id}`);
     } else {
       alert('Failed to create project');
     }
@@ -31,7 +30,7 @@ const delButtonHandler = async (event) => {
     const response = await fetch(`/api/tech/${id}`, {
       method: 'DELETE',
     });
-    console.log(response);
+    //console.log(response);
     console.log(response.status);
 
     if (response.ok) {
@@ -43,22 +42,36 @@ const delButtonHandler = async (event) => {
 };
 
 
+
 document
-  .querySelector('.update')
-  .addEventListener('submit', updateform);
-
-
+  .querySelector('.comment')
+  .addEventListener('click', newFormHandler);
+  
 document
   .querySelector('.delete')
   .addEventListener('click', delButtonHandler);
 
 
+document
+  .querySelector(".update")
+  .addEventListener('click', function newpostHandler() {
+
+    const postform = document.querySelector(".postform");
+    postform.setAttribute("style", "border: 5px solid black;, display: block");
+    }
+  
+    
+    
+    );
 
 
 
+  document
+  .querySelector(".comment")
+  .addEventListener('click', function newcommentHandler() {
 
-function updateform () {
-  const hide = document.querySelector('.update');
-  hide.setAttribute('style', 'display: none');
-
-}
+    const comment = document.querySelector(".comment");
+    comment.setAttribute("style", "border: 5px solid black;, display: block");
+    
+  
+  });
