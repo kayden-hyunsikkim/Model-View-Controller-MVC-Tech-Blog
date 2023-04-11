@@ -10,11 +10,14 @@ router.post('/', withAuth, async (req, res) => {
     });
 
     res.status(200).json(newTech);
+    //console.log(newTech);
   } catch (err) {
     console.log(err);
     res.status(400).json(err);
   }
 });
+
+
 
 router.delete('/:id', withAuth, async (req, res) => {
   try {

@@ -1,35 +1,49 @@
-<div class="text-center">
+<div class="text-center" data-techid="{{id}}">
   <h2>{{name}}</h2>
   <p>{{{get_emoji}}}</p>
   <p>{{description}}</p>
   <p>Created by {{user.name}} on {{format_date date_created}}</p>
   <p>
-    <span><button class="btn btn-primary update">Update Post</button></span>
+    <span><button class="btn btn-primary update">Add comment</button></span>
     <button class="btn btn-primary delete" data-id="{{id}}">Delete</button>
   </p>
 </div>
 
 
-{{#if teches.length}}
+
 <div class="postform mt-4 p-4" style="border: 5px solid black; display:none;">
   <div>
-    <h3>Create a New Tech:</h3>
+    <h3>Your comment : </h3>
 
-    <form class="form new-project-form">
+    <form class="form new-project-form" >
       <div class="form-group">
-        <label for="project-name">Tech name:</label>
-        <input class="form-input" type="text" id="project-name" name="project-name" />
+        <label for="project-desc">comment:</label>
+        <textarea class="form-input" id="comment" name="tech-description"></textarea>
       </div>
       <div class="form-group">
-        <label for="project-desc">description:</label>
-        <textarea class="form-input" id="project-desc" name="project-desc"></textarea>
-      </div>
-      <div class="form-group">
-        <button type="submit" class="btn btn-primary">Create</button>
+        <button type="submit" class="btn btn-primary comment">Create</button>
       </div>
     </form>
   </div>
 </div>
-{{/if}}
 
-<script src="../public/js/post.js"></script>
+
+{{#if comments.length}}
+ <div class="project-list mt-5 p-5 comment" style="border: 5px solid black; display:none;">
+    <h3>Your comment :</h3>
+
+    {{#each comments as |comment|}}
+    <div class="row mt-3" >
+      <div class="col-md-8" >
+        <h4>{{comment.comment}}</a></h4>
+      </div>
+      <div class="col-md-4">
+        <button class="btn btn-primary btn-danger" style="float: right;, --bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;" data-id="{{comment.id}}">DELETE</button>
+      </div>
+    </div>
+    {{/each}}
+  </div>
+  {{/if}}
+</div>
+
+<script src="/js/post.js"></script>
